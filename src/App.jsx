@@ -7,35 +7,36 @@ import axios from "axios";
 const API_URL = "https://api.unsplash.com/search/photos";
 const IMAGES_PER_PAGE = 20;
 
+
 function App() {
-  console.log("key", import.meta.env.VITE_API_KEY);
-  const searchInput = useRef(null);
+const searchInput = useRef(null);
+const [images, setImages] = useState([]);
+const [totalPages, setTotalPages] = useState(0);
 
-  useEffect(() => {
-    const getImages = async () => {
-     try {
-      const result = await axios.get(
-            `${API_URL}?query=${searchInput.current.value}&apge=1&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`
-          );
-          console.log('result', result.data);
-     } catch (error) {
+  const fetchImages = async () => {
+    try {
+      const { data } = await axios.get(
+        `${API_URL}?query=${
+          searchInput.current.value
+        }&apge=1&per_page=${IMAGES_PER_PAGE}&client_id=${
+          import.meta.env.VITE_API_KEY
+        }`
+      );
+      setImages(data.results);
+      setTotalPages(data.total_pages);
+    } catch (error) {
       console.log(error);
-     }
-    };
-
-    getImages();
-  }, []);
-
-  const fetchImages = () => {
-      
-  }
+    }
+  };
 
   const handleSearch = (event) => {
     event.preventDefault();
     console.log(searchInput.current.value);
+    fetchImages();
   };
   const handleSelection = (selection) => {
     searchInput.current.value = selection;
+    fetchImages();
   };
   return (
     <div className="container">
@@ -51,10 +52,22 @@ function App() {
         </Form>
       </div>
       <div className="filters">
-        <div>Nature</div>
-        <div>Birds</div>
-        <div>Cats</div>
-        <div>Shoes</div>
+        <button onClick={() => handleSelection("nature")}>Nature</button>
+        <button onClick={() => handleSelection("birds")}>Birds</button>
+        <button onClick={() => handleSelection("cats")}>Cats</button>
+        <button onClick={() => handleSelection("shoes")}>Shoes</button>
+      </div>
+      <div className="images">
+        {images.map((image) => {
+          return (
+            <img
+              key={image.id}
+              src={image.urls.small}
+              alt={image.alt_description}
+              className='image'
+            />
+          );
+        })}
       </div>
     </div>
   );
