@@ -52,10 +52,10 @@ const [totalPages, setTotalPages] = useState(0);
         </Form>
       </div>
       <div className="filters">
-        <button onClick={() => handleSelection("nature")}>Nature</button>
-        <button onClick={() => handleSelection("birds")}>Birds</button>
-        <button onClick={() => handleSelection("cats")}>Cats</button>
-        <button onClick={() => handleSelection("shoes")}>Shoes</button>
+        <div onClick={() => handleSelection("nature")}>Nature</div>
+        <div onClick={() => handleSelection("birds")}>Birds</div>
+        <div onClick={() => handleSelection("cats")}>Cats</div>
+        <div onClick={() => handleSelection("shoes")}>Shoes</div>
       </div>
       <div className="images">
         {images.map((image) => {
