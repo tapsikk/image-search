@@ -17,8 +17,26 @@ function ImageModal({ imageUrl, closeModal }) {
       isOpen={true}
       onRequestClose={closeModal}
       contentLabel="Selected Image"
+      style={{
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        },
+        content: {
+          background: 'none',
+          border: 'none',
+          padding: 0, // Убираем внутренние отступы
+          maxWidth: '100%', // Устанавливаем максимальную ширину на 100%
+          maxHeight: '100%', // Устанавливаем максимальную высоту на 100%
+          margin: 'auto', // Убираем внешние отступы
+          display: 'flex', // Добавляем flex-контейнер
+          justifyContent: 'center', // Центрируем контент по горизонтали
+          alignItems: 'center', // Центрируем контент по вертикали
+          inset: 150,
+          pointerEvents: 'none',
+        },
+      }}
     >
-      <img src={imageUrl} alt="Selected" style={{ maxWidth: "100%" }} />
+      <img src={imageUrl} alt="Selected" style={{ maxWidth: '100%', maxHeight: '100%' }} />
     </Modal>
   );
 }
