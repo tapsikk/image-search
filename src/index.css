@@ -37,6 +37,8 @@ body {
 }
 
 .buttons {
+  margin: auto;
+  width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
