@@ -24,13 +24,13 @@ function ImageModal({ imageUrl, closeModal }) {
         content: {
           background: 'none',
           border: 'none',
-          padding: 0, // Убираем внутренние отступы
-          maxWidth: '100%', // Устанавливаем максимальную ширину на 100%
-          maxHeight: '100%', // Устанавливаем максимальную высоту на 100%
-          margin: 'auto', // Убираем внешние отступы
-          display: 'flex', // Добавляем flex-контейнер
-          justifyContent: 'center', // Центрируем контент по горизонтали
-          alignItems: 'center', // Центрируем контент по вертикали
+          padding: 0,
+          maxWidth: '100%',
+          maxHeight: '100%',
+          margin: 'auto',
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
           inset: 150,
           pointerEvents: 'none',
         },
