@@ -1,14 +1,15 @@
 import ImageCard from "/src/components/imageCard/ImageCard";
-// import ImageCard from "./ImageCard";
-import "./ImageGallery.css";
+import './ImageGallery.css';
 
 const ImageGallery = ({ images, openModal }) => {
   return (
-    <div className="image-gallery">
+    <ul className="image-gallery">
       {images.map((image) => (
-        <ImageCard key={image.id} image={image} openModal={openModal} />
+        <li key={image.id}>
+          <ImageCard image={image} openModal={openModal} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

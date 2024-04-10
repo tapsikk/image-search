@@ -1,5 +1,4 @@
-// import Modal from "react-modal";
-import "./ImageCard.css";
+import './ImageCard.css';
 
 const ImageCard = ({ image, openModal }) => {
   const handleClick = () => {
@@ -7,8 +6,12 @@ const ImageCard = ({ image, openModal }) => {
   };
 
   return (
-    <div className="image-card" onClick={handleClick}>
-      <img src={image.urls.small} alt={image.alt_description} />
+    <div className="image-card">
+      <img
+        src={image.urls.small}
+        alt={image.alt_description}
+        onClick={handleClick}
+      />
     </div>
   );
 };

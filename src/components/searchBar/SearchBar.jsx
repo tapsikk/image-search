@@ -1,12 +1,19 @@
 import { Form } from "react-bootstrap";
 import { useRef } from "react";
+import { toast } from 'react-toastify';
 
 const SearchBar = ({ onSearch }) => {
   const searchInput = useRef(null);
 
   const handleSearch = (event) => {
     event.preventDefault();
-    onSearch(searchInput.current.value);
+    const query = searchInput.current.value.trim();
+
+    if (query === '') {
+      toast.error('Please enter a search query');
+    } else {
+      onSearch(query);
+    }
   };
 
   return (
