@@ -45,6 +45,7 @@ body {
   gap: var(--default-margin);
   margin-top: var(--medium-margin);
   margin-bottom: var(--larger-margin);
+  background: #7676d7;
 }
 
 .buttons .btn,

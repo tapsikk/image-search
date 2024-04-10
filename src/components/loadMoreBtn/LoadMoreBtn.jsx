@@ -1,7 +1,11 @@
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
 const LoadMoreBtn = ({ onClick }) => {
-  return <Button className='buttons' onClick={onClick}>Load more</Button>;
+  return (
+    <Button className="buttons" onClick={onClick}>
+      Load more
+    </Button>
+  );
 };
 
 export default LoadMoreBtn;

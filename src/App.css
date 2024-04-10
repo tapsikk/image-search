@@ -1,0 +1,32 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  
+}
+
+.filters div {
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.filters div:hover {
+background-color: #5656ec;
+}
+
+.load-more-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
