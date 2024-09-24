@@ -2,11 +2,6 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  --default-spacing: 10px;
-  --default-margin: 1rem;
-  --medium-margin: 3rem;
-  --larger-margin: 5rem;
-  --primary-color: #7676d7;
 }
 
 * {
@@ -16,7 +11,7 @@
 }
 
 body {
-  color: var(--primary-color);
+  color: #7676d7;
 }
 
 /* common css starts */
@@ -32,7 +27,7 @@ body {
 
 .title {
   text-align: center;
-  margin-top: var(--default-margin);
+  margin-top: 1rem;
   color: #7676d7;
 }
 
@@ -42,16 +37,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--default-margin);
-  margin-top: var(--medium-margin);
-  margin-bottom: var(--larger-margin);
+  margin-top: 3rem;
+  margin-bottom: 5rem;
   background: #7676d7;
+  border: none;
+}
+
+.buttons:hover{
+background-color: #4c4cdf;
 }
 
 .buttons .btn,
 .buttons .btn:active,
 .buttons .btn:focus {
-  background-color: var(--primary-color);
+  background-color: #7676d7;
   box-shadow: none;
   outline: none;
   border: none;
@@ -77,16 +76,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: var(--default-margin);
+  margin-top: 1rem;
 }
 
 .search-section .search-input {
   min-width: 500px;
-  padding: var(--default-spacing);
+  padding: 10px;
 }
 
 .search-section .search-btn {
-  margin-left: var(--default-spacing);
+  margin-left: 10px;
 }
 
 /* search section ends */
@@ -99,7 +98,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  margin-top: var(--default-margin);
+  margin-top: 1rem;
 }
 
 .filters > * {
@@ -115,10 +114,10 @@ body {
 /* images section starts */
 
 .images {
-  margin-top: var(--medium-margin);
+  margin-top: 3rem; 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: var(--default-spacing);
+  grid-gap: 10px;
   justify-content: center;
   align-items: center;
 }
@@ -150,7 +149,7 @@ body {
   .search-section .search-input {
     width: 100%;
     min-width: unset;
-    margin: 0 var(--default-margin);
+    margin: 0 1rem; /* Было var(--default-margin) */
   }
 
   .images {
