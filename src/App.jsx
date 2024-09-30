@@ -15,6 +15,7 @@ const FILTERS = ["nature", "birds", "cats", "shoes"];
 function App() {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);  // Добавлено состояние для totalPages
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,12 +31,21 @@ function App() {
     setLoading(true);
 
     try {
-      const { data } = await axios.get(
-        `${API_URL}?query=${searchQuery}&page=${page}&per_page=${IMAGES_PER_PAGE}&client_id=${
-          import.meta.env.VITE_API_KEY
-        }`
-      );
-      setImages((prevImages) => [...prevImages, ...data.results]);
+      const { data } = await axios.get(`${API_URL}`, {
+        params: {
+          query: searchQuery,
+          page,
+          per_page: IMAGES_PER_PAGE,
+          client_id: import.meta.env.VITE_API_KEY,
+        },
+      });
+
+      if (data.results.length === 0) {
+        setErrorMsg("No images found for your query.");
+      } else {
+        setImages((prevImages) => [...prevImages, ...data.results]);
+        setTotalPages(data.total_pages);  // Устанавливаем общее количество страниц
+      }
     } catch (error) {
       setErrorMsg("Error fetching images. Try again later.");
     } finally {
@@ -58,7 +68,6 @@ function App() {
   return (
     <div className="container">
       <h1 className="title">Image Search</h1>
-      {errorMsg && <ErrorMessage message={errorMsg} />}
       <SearchBar onSearch={handleSearch} />
       <div className="filters">
         {FILTERS.map((filter) => (
@@ -67,9 +76,10 @@ function App() {
           </div>
         ))}
       </div>
+        {errorMsg && <ErrorMessage className="errorMsgContainer" message={errorMsg} />}
       {loading && <BallTriangle color="grey" height={100} width={100} />}
       <ImageGallery images={images} openModal={openImageModal} />
-      {!loading && images.length > 0 && (
+      {!loading && images.length > 0 && page < totalPages && (
         <LoadMoreBtn onClick={loadMoreImages} />
       )}
       {selectedImageUrl && (

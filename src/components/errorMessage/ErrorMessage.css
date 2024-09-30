@@ -1,0 +1,17 @@
+.errorContainer {
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorMsg {
+  margin: auto;
+  color: #721c24;
+  font-weight: bold;
+  text-align: center;
+}
