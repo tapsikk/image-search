@@ -10,41 +10,35 @@ import "./App.css";
 
 const API_URL = "https://api.unsplash.com/search/photos";
 const IMAGES_PER_PAGE = 20;
+const FILTERS = ["nature", "birds", "cats", "shoes"];
 
 function App() {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedImageUrl, setSelectedImageUrl] = useState(null);
 
-  const openImageModal = (imageUrl) => {
-    setSelectedImageUrl(imageUrl);
-  };
-
-  const closeImageModal = () => {
-    setSelectedImageUrl(null);
-  };
+  const openImageModal = (imageUrl) => setSelectedImageUrl(imageUrl);
+  const closeImageModal = () => setSelectedImageUrl(null);
 
   const fetchImages = useCallback(async () => {
+    if (!searchQuery) return;
+
+    setErrorMsg("");
+    setLoading(true);
+
     try {
-      if (searchQuery) {
-        setErrorMsg("");
-        setLoading(true);
-        const { data } = await axios.get(
-          `${API_URL}?query=${searchQuery}&page=${page}&per_page=${IMAGES_PER_PAGE}&client_id=${
-            import.meta.env.VITE_API_KEY
-          }`
-        );
-        setImages((prevImages) => [...prevImages, ...data.results]);
-        setTotalPages(data.total_pages);
-        setLoading(false);
-      }
+      const { data } = await axios.get(
+        `${API_URL}?query=${searchQuery}&page=${page}&per_page=${IMAGES_PER_PAGE}&client_id=${
+          import.meta.env.VITE_API_KEY
+        }`
+      );
+      setImages((prevImages) => [...prevImages, ...data.results]);
     } catch (error) {
       setErrorMsg("Error fetching images. Try again later.");
-      console.log(error);
+    } finally {
       setLoading(false);
     }
   }, [page, searchQuery]);
@@ -55,15 +49,11 @@ function App() {
     setSearchQuery(query);
   };
 
-  const loadMoreImages = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
+  const loadMoreImages = () => setPage((prevPage) => prevPage + 1);
 
   useEffect(() => {
-    if (searchQuery) {
-      fetchImages();
-    }
-  }, [fetchImages, searchQuery]);
+    fetchImages();
+  }, [fetchImages]);
 
   return (
     <div className="container">
@@ -71,14 +61,15 @@ function App() {
       {errorMsg && <ErrorMessage message={errorMsg} />}
       <SearchBar onSearch={handleSearch} />
       <div className="filters">
-        <div onClick={() => handleSearch("nature")}>Nature</div>
-        <div onClick={() => handleSearch("birds")}>Birds</div>
-        <div onClick={() => handleSearch("cats")}>Cats</div>
-        <div onClick={() => handleSearch("shoes")}>Shoes</div>
+        {FILTERS.map((filter) => (
+          <div key={filter} onClick={() => handleSearch(filter)}>
+            {filter.charAt(0).toUpperCase() + filter.slice(1)}
+          </div>
+        ))}
       </div>
       {loading && <BallTriangle color="grey" height={100} width={100} />}
       <ImageGallery images={images} openModal={openImageModal} />
-      {!loading && images.length > 0 && page < totalPages && (
+      {!loading && images.length > 0 && (
         <LoadMoreBtn onClick={loadMoreImages} />
       )}
       {selectedImageUrl && (

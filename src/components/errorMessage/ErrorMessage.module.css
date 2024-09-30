@@ -1,0 +1,14 @@
+.error-container {
+    background-color: #f8d7da; /* Красный фон */
+    border: 1px solid #f5c6cb; /* Рамка для выделения */
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 0; /* Отступы сверху и снизу */
+  }
+  
+  .error-msg {
+    color: #721c24; /* Тёмно-красный цвет текста */
+    font-weight: bold; /* Жирный текст */
+    text-align: center; /* Центрируем текст */
+  }
+  
