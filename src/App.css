@@ -23,7 +23,12 @@
 .filters div:hover {
 background-color: #5656ec;
 }
-
+.loader-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
 .load-more-btn {
   display: flex;
   justify-content: center;
