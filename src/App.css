@@ -10,8 +10,6 @@
 }
 
 .filters {
-  display: flex;
-  justify-content: center;
   margin-bottom: 20px;
 }
 
@@ -22,6 +20,8 @@
 }
 
 .filters div {
+  width: 70px;
+  text-align: center;
   margin: 0 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;

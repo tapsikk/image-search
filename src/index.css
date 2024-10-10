@@ -70,15 +70,17 @@ body {
 /* search section starts */
 
 .search-section {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  text-align: center;
   margin-top: 1rem;
 }
 
 .search-section .search-input {
-  min-width: 500px;
+  width: 400px;
   padding: 10px;
+  display: inline-block;
 }
 
 .search-section .search-btn {
@@ -144,11 +146,21 @@ body {
 
 @media (max-width: 480px) {
   .search-section .search-input {
+
     width: 100%;
-    min-width: unset;
+    margin: auto;
   }
 
   .images {
     grid-template-columns: 1fr;
+  }
+  .image-card{
+    max-width: 100%;
+  }
+  .filters{
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
