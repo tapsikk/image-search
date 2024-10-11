@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-bottom: 75%; /* Соотношение сторон 4:3 */
+  padding-bottom: 75%;
 }
 
 .image-card img {

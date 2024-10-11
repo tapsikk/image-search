@@ -9,6 +9,28 @@
   margin-bottom: 20px;
 }
 
+.title a {
+  color: #7676d7;
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+.title a:after {
+  background-color: #7676d7;
+  display: block;
+  content: "";
+  height: 2px;
+  width: 0%;
+  -webkit-transition: width .3s ease-in-out;
+  -moz--transition: width .3s ease-in-out;
+  transition: width .3s ease-in-out;
+}
+.title a:hover:after,
+.title a:focus:after {
+  width: 100%;
+}
+
 .filters {
   margin-bottom: 20px;
 }

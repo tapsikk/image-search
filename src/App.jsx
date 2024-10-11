@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="title">Image Search</h1>
+      <h1 className="title"><a>Image Search</a></h1>
       <SearchBar onSearch={handleSearch} />
       <div className="filters">
         {FILTERS.map((filter) => (
