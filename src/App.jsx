@@ -2,7 +2,6 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import ErrorMessage from "./components/errorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/loadMoreBtn/LoadMoreBtn";
-// import { BallTriangle } from "react-loader-spinner";
 import { MutatingDots } from 'react-loader-spinner';
 import ImageModal from "./components/imageModal/ImageModal";
 import ImageGallery from "./components/imageGallery/ImageGallery";
